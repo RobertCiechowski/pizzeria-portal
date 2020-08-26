@@ -4,9 +4,9 @@ import styles from './Kitchen.scss';
 const Kitchen = () => {
   return (
     <div className={styles.component}>
-      <h2>Kitchen view</h2>
+      <h2> Kitchen view</h2>
     </div>
   );
 };
 
-export default Kitchen;
+export default Kitchen; 

@@ -1,24 +1,15 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-import tablesReducer from './tablesRedux';
+import {combineReducers, createStore} from 'redux';
 
 
 // define initial state and shallow-merge initial data
 const initialState = {
-  tables: {
-    data: [],
-    loading: {
-      active: false,
-      error: false,
-    },
-  },
+
 };
 
 // define reducers
 const reducers = {
-  tables: tablesReducer,
+  //filters: filtersReducer,
+  //order: orderReducer,
 };
 
 // add blank reducers for initial state properties without reducers
@@ -28,15 +19,20 @@ Object.keys(initialState).forEach(item => {
   }
 });
 
+// combine reducers
 const combinedReducers = combineReducers(reducers);
+
+// merge all reducers with globalReducer
+const storeReducer = (state, action) => {
+  //const modifiedState = globalReducer(state, action);
+  //return combinedReducers(modifiedState, action);
+};
 
 // create store
 const store = createStore(
-  combinedReducers,
+  storeReducer,
   initialState,
-  composeWithDevTools(
-    applyMiddleware(thunk)
-  )
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;
